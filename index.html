@@ -45,6 +45,9 @@
       .animate-fade-in {
         animation: fadeIn 0.2s ease-out forwards;
       }
+      /* Language display toggles */
+      html[lang="ko"] .lang-en { display: none !important; }
+      html[lang="en"] .lang-ko { display: none !important; }
     </style>
   </head>
   <body class="min-h-screen bg-slate-50 text-slate-800 selection:bg-blue-600 selection:text-white antialiased">
@@ -58,7 +61,8 @@
           </div>
           <div>
             <span class="font-sans font-extrabold text-base text-slate-900 tracking-tight block leading-none">
-              박종욱 (Jongwook Park)
+              <span class="lang-ko">박종욱 (Jongwook Park)</span>
+              <span class="lang-en">Dr. Jongwook Park</span>
             </span>
             <span class="text-[10px] font-mono tracking-wider text-blue-600 block mt-1 leading-none font-extrabold uppercase">
               Senior VP, Head of R&D Lab
@@ -69,27 +73,45 @@
         <!-- Sticky Nav Links -->
         <nav class="hidden md:flex items-center gap-1.5">
           <button id="nav-intro" onclick="scrollToSection('intro')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-sans font-semibold transition-all-300 border bg-blue-50 text-blue-700 border-blue-200 font-bold">
-            소개
+            <span class="lang-ko">소개</span>
+            <span class="lang-en">About</span>
           </button>
           <button id="nav-simulator" onclick="scrollToSection('simulator')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-sans font-semibold transition-all-300 border text-slate-600 border-transparent hover:text-slate-900 hover:bg-slate-100">
-            제어·음향 연구
+            <span class="lang-ko">제어·음향 연구</span>
+            <span class="lang-en">Research</span>
           </button>
           <button id="nav-experience" onclick="scrollToSection('experience')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-sans font-semibold transition-all-300 border text-slate-600 border-transparent hover:text-slate-900 hover:bg-slate-100">
-            전문 경력
+            <span class="lang-ko">전문 경력</span>
+            <span class="lang-en">Experience</span>
           </button>
           <button id="nav-education" onclick="scrollToSection('education')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-sans font-semibold transition-all-300 border text-slate-600 border-transparent hover:text-slate-900 hover:bg-slate-100">
-            학위
+            <span class="lang-ko">학위</span>
+            <span class="lang-en">Education</span>
           </button>
           <button id="nav-contact" onclick="scrollToSection('contact')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-sans font-semibold transition-all-300 border text-slate-600 border-transparent hover:text-slate-900 hover:bg-slate-100">
-            네트워킹
+            <span class="lang-ko">네트워킹</span>
+            <span class="lang-en">Contact</span>
           </button>
         </nav>
 
-        <!-- Quick Contact Action Button -->
-        <button onclick="scrollToSection('contact')" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-sans font-bold rounded-xl shadow-xs transition-colors duration-200 flex items-center gap-1.5 cursor-pointer">
-          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
-          이메일 발송
-        </button>
+        <div class="flex items-center gap-2">
+          <!-- Quick Contact Action Button -->
+          <button onclick="scrollToSection('contact')" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-sans font-bold rounded-xl shadow-xs transition-colors duration-200 flex items-center gap-1.5 cursor-pointer">
+            <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+            <span class="lang-ko">이메일 발송</span>
+            <span class="lang-en">Email Me</span>
+          </button>
+
+          <!-- Language Selection Pill Buttons -->
+          <div class="flex items-center bg-slate-100 border border-slate-200 p-0.5 rounded-xl text-xs font-sans font-bold">
+            <button onclick="setLanguage('ko')" id="lang-btn-ko" class="px-2 py-1 rounded-lg transition-all duration-200 text-slate-700 bg-white shadow-xs cursor-pointer">
+              KO
+            </button>
+            <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2 py-1 rounded-lg transition-all duration-200 text-slate-500 hover:text-slate-800 cursor-pointer">
+              EN
+            </button>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -137,7 +159,8 @@
               <div>
                 <div class="flex flex-wrap items-center gap-2">
                   <h1 class="font-sans font-black text-3xl sm:text-3.5xl text-slate-900 tracking-tight leading-none mb-1">
-                    박종욱 <span class="text-xl text-slate-400 font-medium font-mono">Jongwook Park</span>
+                    <span class="lang-ko">박종욱 <span class="text-xl text-slate-400 font-medium font-mono">Jongwook Park</span></span>
+                    <span class="lang-en">Dr. Jongwook Park <span class="text-lg text-slate-400 font-medium font-sans font-semibold">Ph.D.</span></span>
                   </h1>
                   <!-- Miniature update indicator -->
                   <button 
@@ -145,11 +168,13 @@
                     class="px-2 py-0.5 rounded-md text-[10px] bg-slate-50 hover:bg-indigo-50 text-slate-500 hover:text-indigo-600 border border-slate-200 hover:border-indigo-100 font-sans font-bold flex items-center gap-1 transition-colors cursor-pointer"
                   >
                     <i data-lucide="camera" class="w-3 h-3"></i>
-                    사진 설정
+                    <span class="lang-ko">사진 설정</span>
+                    <span class="lang-en">Photo Setup</span>
                   </button>
                 </div>
                 <p class="font-sans font-medium text-sm text-indigo-600 mt-1">
-                  범진전자 전무 겸 연구소장 | 前 삼성전자 오디오 핵심제품 연구개발 리더
+                  <span class="lang-ko">범진전자 전무 겸 연구소장 | 前 삼성전자 오디오 핵심제품 연구개발 리더</span>
+                  <span class="lang-en">VP & Head of R&D at Bumjin Electronics | Former Audio R&D Leader at Samsung Electronics</span>
                 </p>
               </div>
             </div>
@@ -159,31 +184,41 @@
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2 text-slate-800 font-sans font-bold text-xs">
                   <i data-lucide="image" class="w-4 h-4 text-indigo-600"></i>
-                  <span>프로필 사진 가공 및 설정</span>
+                  <span class="lang-ko">프로필 사진 설정</span>
+                  <span class="lang-en">Profile Photo Settings</span>
                 </div>
                 <button onclick="togglePhotoWidget()" class="text-[11px] text-slate-400 hover:text-slate-600 font-sans cursor-pointer">
-                  닫기
+                  <span class="lang-ko">닫기</span>
+                  <span class="lang-en">Close</span>
                 </button>
               </div>
 
               <p class="text-[11px] text-slate-500 leading-relaxed font-sans">
-                💡 <strong>링크드인 사진 연동법:</strong> 내 <a href="https://www.linkedin.com/in/jongwook-park-1188992/" target="_blank" class="text-indigo-600 hover:underline font-bold">LinkedIn 프로필</a>로 이동하여 내 사진 위에서 <strong>마우스 우클릭 &gt; '이미지 주소 복사(Copy Image Address)'</strong>를 누른 후 아래 URL에 입력해 주시면 즉시 반영됩니다. 또는 오프라인에 소지하신 <strong>사진 파일(JPG/PNG)을 직접 업로드</strong>할 수도 있습니다.
+                <span class="lang-ko">💡 <strong>링크드인 사진 연동법:</strong> 내 <a href="https://www.linkedin.com/in/jongwook-park-1188992/" target="_blank" class="text-indigo-600 hover:underline font-bold">LinkedIn 프로필</a>로 이동하여 내 사진 위에서 <strong>오른쪽 마우스 클릭 &gt; '이미지 주소 복사'</strong>를 한 뒤 아래 URL에 넣으시면 연동됩니다. 직접 <strong>사진 파일(JPG/PNG)을 업로드</strong>할 수도 있습니다.</span>
+                <span class="lang-en">💡 <strong>LinkedIn Connection:</strong> Go to your <a href="https://www.linkedin.com/in/jongwook-park-1188992/" target="_blank" class="text-indigo-600 hover:underline font-bold font-bold">LinkedIn Profile</a>, <strong>right-click your portrait &gt; choose 'Copy Image Address'</strong>, and paste it below. You can also <strong>upload a local photo file (JPG/PNG)</strong>.</span>
               </p>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                 <!-- Upload Form element -->
                 <div class="p-3 bg-white rounded-xl border border-slate-200/50 flex flex-col justify-between">
-                  <span class="text-[10px] font-mono text-slate-400 block font-bold tracking-wider mb-2">METHOD 1: 파일 수동 업로드</span>
+                  <span class="text-[10px] font-mono text-slate-400 block font-bold tracking-wider mb-2">
+                    <span class="lang-ko">메소드 1: 파일 수동 업로드</span>
+                    <span class="lang-en">METHOD 1: File Upload</span>
+                  </span>
                   <label class="flex items-center justify-center gap-1.5 px-3 py-2 bg-indigo-50 hover:bg-indigo-100/85 text-indigo-700 text-xs font-sans font-bold rounded-lg border border-indigo-100 transition-colors cursor-pointer text-center">
                     <i data-lucide="upload" class="w-3.5 h-3.5"></i>
-                    사진 파일 선택
+                    <span class="lang-ko">사진 파일 선택</span>
+                    <span class="lang-en">Choose Image File</span>
                     <input type="file" id="photo-upload-input" accept="image/*" class="hidden" onchange="handleLocalFileUpload(event)">
                   </label>
                 </div>
 
                 <!-- Web Image address field -->
                 <div class="p-3 bg-white rounded-xl border border-slate-200/50 flex flex-col justify-between space-y-2">
-                  <span class="text-[10px] font-mono text-slate-400 block font-bold tracking-wider">METHOD 2: 이미지 웹 URL 입력</span>
+                  <span class="text-[10px] font-mono text-slate-400 block font-bold tracking-wider">
+                    <span class="lang-ko">메소드 2: 이미지 웹 URL 입력</span>
+                    <span class="lang-en">METHOD 2: Image Web URL</span>
+                  </span>
                   <div class="flex gap-1.5">
                     <input
                       type="url"
@@ -192,7 +227,8 @@
                       class="w-full text-[11px] font-sans p-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500 text-slate-700"
                     >
                     <button onclick="handleUrlPhotoApply()" class="px-2.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-sans font-bold rounded-lg cursor-pointer flex-shrink-0">
-                      적용
+                      <span class="lang-ko">적용</span>
+                      <span class="lang-en">Apply</span>
                     </button>
                   </div>
                 </div>
@@ -202,11 +238,13 @@
               <div id="photo-config-footer" class="flex items-center justify-between pt-2 border-t border-slate-200/40" style="display: none;">
                 <span id="current-status-tag" class="text-[10px] font-mono text-emerald-600 font-bold flex items-center gap-1">
                   <span class="inline-block w-1.5 bg-emerald-500 rounded-full h-1.5 animate-ping"></span>
-                  프로필 이미지 사용자 정의 모드 가동 중
+                  <span class="lang-ko">프로필 이미지 사용자 정의 가동 중</span>
+                  <span class="lang-en">Custom Profile Image Mode Active</span>
                 </span>
                 <button onclick="resetProfilePhoto()" class="text-[10px] text-red-500 hover:text-red-650 font-sans font-semibold flex items-center gap-1 cursor-pointer bg-red-50 px-2 py-1 rounded">
                   <i data-lucide="trash-2" class="w-3 h-3"></i>
-                  지우고 기본 로고로 복원
+                  <span class="lang-ko">로고 복원</span>
+                  <span class="lang-en">Reset Logo</span>
                 </button>
               </div>
             </div>
@@ -214,10 +252,12 @@
             <!-- Pitch Statement -->
             <div class="mt-8 space-y-4">
               <p class="text-base text-slate-700 font-sans leading-relaxed">
-                <strong>대한민국 오디오 및 디지털 신호 처리 분야의 기술 혁신을 주도해 왔습니다.</strong> 서울대학교에서 제어계측공학 학·석·박사 학위를 수여받아 다져진 강력한 자동제어 신호 이론을 바탕으로, <strong>삼성전자 중앙연구소</strong> 및 실리콘밸리 <strong>SRA(Samsung Research America)</strong>에서 차세대 임베디드 오디오 모듈, 네트워크 허브 및 가전특화 AI 알고리즘 설계를 총괄하는 핵심 역할을 담당하였습니다.
+                <span class="lang-ko"><strong>대한민국 오디오 및 디지털 신호 처리 분야의 기술 혁신을 주도해 왔습니다.</strong> 서울대학교에서 제어계측공학 학·석·박사 학위를 수여받아 다져진 강력한 자동제어 신호 이론을 바탕으로, <strong>삼성전자 중앙연구소</strong> 및 실리콘밸리 <strong>SRA(Samsung Research America)</strong>에서 차세대 임베디드 오디오 모듈, 네트워크 허브 및 가전특화 AI 알고리즘 설계를 총괄하는 핵심 역할을 담당하였습니다.</span>
+                <span class="lang-en"><strong>A pioneer in acoustic engineering and digital signal processing (DSP) in South Korea.</strong> Leveraging solid research in automatic control and signal systems from Seoul National University (B.S., M.S., Ph.D.), Dr. Park took lead roles at <strong>Samsung Electronics Central Research Institute</strong> and Silicon Valley's <strong>SRA (Samsung Research America)</strong>, designing next-generation embedded audio systems and consumer AI algorithms.</span>
               </p>
               <p class="text-sm text-slate-500 font-sans leading-relaxed">
-                현재는 프리미엄 가전 음향 브랜드 파트너인 <strong>범진전자 연구소장(전무)</strong>으로 근무하며 차세대 무선 오디오와 첨단 DSP 필터 알고리즘, 양산 품질 표준 프로세스를 이끌고 있습니다.
+                <span class="lang-ko">현재는 프리미엄 가전 음향 브랜드 파트너인 <strong>범진전자 연구소장(전무)</strong>으로 근무하며 차세대 무선 오디오와 첨단 DSP 필터 알고리즘, 양산 품질 표준 프로세스를 이끌고 있습니다.</span>
+                <span class="lang-en">Currently, he serves as <strong>Senior VP & Head of R&D at Bumjin Electronics</strong>, directing premium audio lines, advanced active digital filter designs, and global production quality standards.</span>
               </p>
             </div>
           </div>
@@ -225,20 +265,44 @@
           <!-- Bottom Quick Specs Grid -->
           <div class="mt-8 pt-6 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-4 relative z-20" id="quick-facts-header">
             <div class="space-y-1">
-              <span class="text-[10px] font-mono text-slate-400 block uppercase font-bold tracking-wider">주요 도메인 (Industry Focus)</span>
-              <span class="text-xs font-semibold text-slate-800">프리미엄 음향 R&D / DSP</span>
+              <span class="text-[10px] font-mono text-slate-400 block uppercase font-bold tracking-wider">
+                <span class="lang-ko">주요 도메인 (Industry Focus)</span>
+                <span class="lang-en">Industry Focus</span>
+              </span>
+              <span class="text-xs font-semibold text-slate-800">
+                <span class="lang-ko">프리미엄 음향 R&D / DSP</span>
+                <span class="lang-en">Premium Audio R&D / DSP</span>
+              </span>
             </div>
             <div class="space-y-1">
-              <span class="text-[10px] font-mono text-slate-400 block uppercase font-bold tracking-wider">학위 백그라운드 (Academic)</span>
-              <span class="text-xs font-semibold text-slate-800">서울대 제어계측공학 박사</span>
+              <span class="text-[10px] font-mono text-slate-400 block uppercase font-bold tracking-wider">
+                <span class="lang-ko">학위 백그라운드 (Academic)</span>
+                <span class="lang-en">Academic Background</span>
+              </span>
+              <span class="text-xs font-semibold text-slate-800">
+                <span class="lang-ko">서울대 제어계측공학 박사</span>
+                <span class="lang-en">Ph.D., Control Eng. (SNU)</span>
+              </span>
             </div>
             <div class="space-y-1">
-              <span class="text-[10px] font-mono text-slate-400 block uppercase font-bold tracking-wider">주요 역량 (Core Competency)</span>
-              <span class="text-xs font-semibold text-slate-800">능동제어 알고리즘 설계</span>
+              <span class="text-[10px] font-mono text-slate-400 block uppercase font-bold tracking-wider">
+                <span class="lang-ko">주요 역량 (Core Competency)</span>
+                <span class="lang-en">Core Competency</span>
+              </span>
+              <span class="text-xs font-semibold text-slate-800">
+                <span class="lang-ko">능동제어 알고리즘 설계</span>
+                <span class="lang-en">Active Control Algorithms</span>
+              </span>
             </div>
             <div class="space-y-1">
-              <span class="text-[10px] font-mono text-slate-400 block uppercase font-bold tracking-wider">누적 신뢰성 제어 (Reliability)</span>
-              <span class="text-xs font-semibold text-slate-800">삼성전자 全 제품 품질연구</span>
+              <span class="text-[10px] font-mono text-slate-400 block uppercase font-bold tracking-wider">
+                <span class="lang-ko">누적 신뢰성 제어 (Reliability)</span>
+                <span class="lang-en">Reliability & Quality</span>
+              </span>
+              <span class="text-xs font-semibold text-slate-800">
+                <span class="lang-ko">삼성전자 全 제품 품질연구</span>
+                <span class="lang-en">Samsung-wide Quality R&D</span>
+              </span>
             </div>
           </div>
         </div>
@@ -254,10 +318,12 @@
                 Global Networking
               </span>
               <h3 class="font-sans font-extrabold text-xl text-white mt-3">
-                박종욱 연구소장 연락처
+                <span class="lang-ko">박종욱 연구소장 연락처</span>
+                <span class="lang-en">Contact Information</span>
               </h3>
               <p class="text-xs text-slate-400 font-sans mt-1">
-                기술 자문, 산학협력 R&D, 글로벌 오디오 프로젝트 제안 등 상시 소통이 가능합니다.
+                <span class="lang-ko">기술 자문, 산학협력 R&D, 글로벌 오디오 프로젝트 제안 등 상시 소통이 가능합니다.</span>
+                <span class="lang-en">Open for advisory roles, academic R&D, and premium audio proposals.</span>
               </p>
             </div>
 
@@ -268,26 +334,34 @@
                 id="click-copy-email-box"
                 onclick="copyEmailToClipboard()"
                 class="p-3.5 bg-slate-800/60 border border-slate-700/50 hover:border-cyan-500/55 rounded-2xl group transition-all duration-300 cursor-pointer text-left relative"
-                title="클릭하여 이메일 주소 복사하기"
+                title="Copy email address"
               >
-                <span class="text-[10px] font-sans text-cyan-400 font-semibold block uppercase tracking-wider">이메일 주소 (Email)</span>
+                <span class="text-[10px] font-sans text-cyan-400 font-semibold block uppercase tracking-wider">
+                  <span class="lang-ko">이메일 주소 (클릭하여 복사)</span>
+                  <span class="lang-en">Email Address (Click to Copy)</span>
+                </span>
                 <div class="flex items-center justify-between gap-2 mt-1">
                   <span class="text-xs sm:text-sm font-mono font-medium text-white group-hover:text-cyan-200 transition-colors">
                     RichardJWPark@gmail.com
                   </span>
-                  <span id="copy-text-badge" class="px-2 py-0.5 rounded text-[10px] bg-slate-700/80 text-slate-300 font-sans group-hover:bg-cyan-950 group-hover:text-cyan-300 transition-colors">
-                    복사
+                  <span id="copy-text-badge" class="px-2 py-0.5 rounded text-[10px] bg-slate-700/80 text-slate-300 font-sans group-hover:bg-cyan-950 group-hover:text-cyan-300 transition-colors font-bold">
+                    <span class="lang-ko">복사</span>
+                    <span class="lang-en">Copy</span>
                   </span>
                 </div>
               </div>
 
               <!-- Office Location info -->
               <div class="p-3.5 bg-slate-800/60 border border-slate-700/50 rounded-2xl text-left">
-                <span class="text-[10px] font-sans text-slate-400 font-semibold block uppercase tracking-wider">근무처 정보 (Office Location)</span>
+                <span class="text-[10px] font-sans text-slate-400 font-semibold block uppercase tracking-wider">
+                  <span class="lang-ko">근무처 정보</span>
+                  <span class="lang-en">Office Location</span>
+                </span>
                 <div class="flex items-start gap-2 mt-1.5">
                   <i data-lucide="map-pin" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i>
                   <p class="text-xs text-slate-300 font-sans leading-snug">
-                    범진전자 연구소 본사 (S. Korea)<br />
+                    <span class="lang-ko">범진전자 연구소 본사 (대한민국)</span>
+                    <span class="lang-en">Bumjin Electronics R&D HQ (S. Korea)</span><br />
                     <span class="text-slate-500 font-mono text-[10px]">Senior VP & Head of R&D Lab</span>
                   </p>
                 </div>
@@ -335,27 +409,33 @@
                   <i data-lucide="activity" class="w-5 h-5"></i>
                 </span>
                 <h3 class="font-sans font-extrabold text-lg text-slate-900">
-                  제어계측 & 음향 제어 루프 시뮬레이션
+                  <span class="lang-ko">제어계측 & 음향 제어 루프 시뮬레이션</span>
+                  <span class="lang-en">Feedback Control & Acoustic DSP Simulation</span>
                 </h3>
               </div>
               <p class="text-xs text-slate-500 font-sans mt-0.5 leading-relaxed">
-                박종욱 박사의 전문 도메인인 서울대 <span class="text-blue-600 font-bold font-semibold">제어계측공학(Control Systems)</span> 교차 설계 기법과 삼성·범진 <span class="text-blue-600 font-bold">오디오 디지털 신호 처리(DSP)</span> 능동 제어 루프를 실시간 물리 시뮬레이션합니다.
+                <span class="lang-ko">박종욱 박사의 전문 도메인인 서울대 <span class="text-blue-600 font-semibold font-bold">제어계측공학(Control Systems)</span> 교차 설계 기법과 삼성·범진 <span class="text-blue-600 font-bold">오디오 디지털 신호 처리(DSP)</span> 능동 제어 루프를 실시간 물리 시뮬레이션합니다.</span>
+                <span class="lang-en">Real-time physical simulation of Dr. Park's core expertise: <span class="text-blue-600 font-bold">Control Systems</span> engineering coupled with high-fidelity <span class="text-blue-600 font-bold">Audio Digital Signal Processing (DSP)</span> active control loops.</span>
               </p>
             </div>
 
             <!-- Preset Buttons -->
             <div class="flex flex-wrap gap-1.5 self-start md:self-center">
               <button onclick="applyModelPreset('default')" id="btn-preset-default" class="preset-btn px-3 py-1 rounded-full text-xs font-sans tracking-wide transition border bg-slate-900 text-white border-slate-900 font-semibold">
-                기본 밸런스
+                <span class="lang-ko">기본 밸런스</span>
+                <span class="lang-en">Default Balance</span>
               </button>
               <button onclick="applyModelPreset('anc')" id="btn-preset-anc" class="preset-btn px-3 py-1 rounded-full text-xs font-sans tracking-wide transition border bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100">
-                노이즈 액티브 캔슬링
+                <span class="lang-ko">노이즈 캔슬링</span>
+                <span class="lang-en">Active Noise Cancelling</span>
               </button>
               <button onclick="applyModelPreset('soundbar')" id="btn-preset-soundbar" class="preset-btn px-3 py-1 rounded-full text-xs font-sans tracking-wide transition border bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100">
-                사운드바 자동보정
+                <span class="lang-ko">사운드바 자동보정</span>
+                <span class="lang-en">Speaker Auto-Calib</span>
               </button>
               <button onclick="applyModelPreset('unstable')" id="btn-preset-unstable" class="preset-btn px-3 py-1 rounded-full text-xs font-sans tracking-wide transition border bg-indigo-50/30 text-red-650 border-red-200 hover:bg-red-50">
-                불안정 공진 테스트
+                <span class="lang-ko">불안정 공진 테스트</span>
+                <span class="lang-en">Unstable Resonance</span>
               </button>
             </div>
           </div>
@@ -387,7 +467,7 @@
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-2.5">
                 <i id="control-state-visual-icon" data-lucide="shield-check" class="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-600"></i>
                 <p id="technical-caption-text" class="text-[11px] font-sans text-slate-600 leading-normal">
-                  <strong>현재 제어 상태:</strong> 최적 제어기(PID/LQR 결합형 피드백)가 가동되어 적색 원본 신호의 외란 및 고조파를 감지하고 역위상 신호(자색 점선)를 산출해 내어 왜곡이 제로화된 부드러운 사인파 <strong>청색 파형</strong>을 가시적으로 유지 중입니다.
+                  <!-- Set dynamically by updateSimulationCaptions() JS -->
                 </p>
               </div>
             </div>
@@ -397,13 +477,17 @@
               <div class="space-y-4">
                 <h4 class="font-sans font-bold text-xs uppercase tracking-widest text-slate-700 flex items-center gap-1.5">
                   <i data-lucide="sliders" class="w-4 h-4 text-blue-600"></i>
-                  DSP & 시스템 제어 정밀 파라미터
+                  <span class="lang-ko">DSP & 시스템 제어 정밀 파라미터</span>
+                  <span class="lang-en">DSP & Feedback Parameters</span>
                 </h4>
 
                 <!-- Slider 1: Frequency -->
                 <div class="space-y-1">
                   <div class="flex justify-between text-xs font-sans">
-                    <span class="text-slate-500 font-medium">발진 기본 주파수 (F0)</span>
+                    <span class="text-slate-500 font-medium font-semibold">
+                      <span class="lang-ko">발진 기본 주파수 (F0)</span>
+                      <span class="lang-en">Oscillation Frequency (F0)</span>
+                    </span>
                     <span id="val-frequency" class="font-mono text-blue-600 font-bold">440 Hz</span>
                   </div>
                   <input
@@ -421,7 +505,10 @@
                 <!-- Slider 2: Damping Factor -->
                 <div class="space-y-1">
                   <div class="flex justify-between text-xs font-sans">
-                    <span class="text-slate-500 font-medium">계측 댐핑 계수 (ζ - Damping)</span>
+                    <span class="text-slate-500 font-medium font-semibold">
+                      <span class="lang-ko">계측 댐핑 계수 (ζ - Damping)</span>
+                      <span class="lang-en font-bold">Damping Ratio (ζ)</span>
+                    </span>
                     <span id="val-damping" class="font-mono text-slate-700 font-bold">0.20</span>
                   </div>
                   <input
@@ -439,7 +526,10 @@
                 <!-- Slider 3: Feedback Gain -->
                 <div class="space-y-1">
                   <div class="flex justify-between text-xs font-sans">
-                    <span class="text-slate-500 font-medium">피드백 제어 루프 이득 (K - Feedback Gain)</span>
+                    <span class="text-slate-500 font-medium font-semibold">
+                      <span class="lang-ko">피드백 제어 루프 이득 (K - Feedback Gain)</span>
+                      <span class="lang-en">Feedback Loop Gain (K)</span>
+                    </span>
                     <span id="val-gain" class="font-mono text-blue-500 font-bold">1.50</span>
                   </div>
                   <input
@@ -457,7 +547,10 @@
                 <!-- Slider 4: Noise Level -->
                 <div class="space-y-1">
                   <div class="flex justify-between text-xs font-sans">
-                    <span class="text-slate-500 font-medium">주변 물리적 노이즈 왜란 (Noise)</span>
+                    <span class="text-slate-500 font-medium font-semibold">
+                      <span class="lang-ko">주변 물리적 노이즈 왜란 (Noise)</span>
+                      <span class="lang-en">External Noise Disturbance</span>
+                    </span>
                     <span id="val-noise" class="font-mono text-red-500 font-bold">30%</span>
                   </div>
                   <input
@@ -478,7 +571,10 @@
                 <div class="flex items-center gap-2">
                   <i id="volume-indicator-icon" data-lucide="volume-2" class="w-5 h-5 text-blue-600"></i>
                   <div class="flex flex-col">
-                    <span class="text-xs font-sans font-bold text-slate-700 font-semibold">능동 소음 제어기 (Active Filter)</span>
+                    <span class="text-xs font-sans font-bold text-slate-700 font-semibold">
+                      <span class="lang-ko">능동 소음 제어기 (Active Filter)</span>
+                      <span class="lang-en">Active Feedback Filter</span>
+                    </span>
                     <span class="text-[10px] text-slate-400 font-mono">Feedback Noise Control Engine</span>
                   </div>
                 </div>
@@ -504,7 +600,8 @@
               <i data-lucide="briefcase" class="w-5 h-5"></i>
             </span>
             <h3 class="font-sans font-extrabold text-lg text-slate-900 border-b border-slate-200 pb-1 flex-1">
-              전문 경력 (Professional Experience)
+              <span class="lang-ko">전문 경력 (Professional Experience)</span>
+              <span class="lang-en">Professional Experience</span>
             </h3>
           </div>
 
@@ -521,7 +618,7 @@
                   <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-slate-200/60 pb-4 mb-4">
                     <div>
                       <div class="flex items-center gap-2 mb-1">
-                        <h4 class="font-sans font-extrabold text-lg md:text-xl text-slate-900">
+                        <h4 class="font-sans font-extrabold text-lg md:text-xl text-slate-900 font-semibold">
                           범진전자 (BUMJIN Electronics)
                         </h4>
                         <span class="px-2 py-0.5 rounded text-[10px] bg-slate-100 text-slate-700 border border-slate-200 font-mono tracking-wider font-bold uppercase">
@@ -530,7 +627,8 @@
                       </div>
                       <p class="text-sm font-sans font-semibold text-blue-600 flex items-center gap-1.5">
                         <i data-lucide="award" class="w-4 h-4 text-blue-500"></i>
-                        부사장 / 연구소장 (VP, Head of R&D Institute)
+                        <span class="lang-ko">전무 / 연구소장</span>
+                        <span class="lang-en">Senior VP, Head of R&D Lab</span>
                       </p>
                     </div>
 
@@ -541,28 +639,42 @@
                   </div>
 
                   <p class="text-sm text-slate-600 leading-relaxed font-sans mb-6">
-                    범진전자의 기술 혁신을 주도하며 글로벌 프리미엄 오디오 제품과 음향 소프트웨어 솔루션 개발 전반을 총괄하고 있습니다.
+                    <span class="lang-ko">범진전자의 기술 혁신을 주도하며 글로벌 프리미엄 오디오 제품과 음향 소프트웨어 솔루션 개발 전반을 총괄하고 있습니다.</span>
+                    <span class="lang-en">Directing technological innovation and steering end-to-end engineering of premium wireless audio products, embedded systems, and acoustic DSP modules.</span>
                   </p>
 
                   <div class="space-y-3.5">
                     <h5 class="font-sans text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
-                      주요 성과 및 연구 분야 (Key Achievements)
+                      <span class="lang-ko">주요 성과 및 연구 분야</span>
+                      <span class="lang-en">Key Achievements & R&D Scope</span>
                     </h5>
                     <div class="flex items-start gap-3 text-sm text-slate-700">
                       <span class="mt-1 flex-shrink-0"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-slate-700"></i></span>
-                      <p class="leading-relaxed font-sans">차세대 프리미엄 무선 오디오 및 고성능 디지털 사운드바 스마트 제품 기술 라인업 구축</p>
+                      <p class="leading-relaxed font-sans">
+                        <span class="lang-ko">차세대 프리미엄 무선 오디오 및 고성능 디지털 사운드바 스마트 제품 기술 라인업 구축</span>
+                        <span class="lang-en">Established leading-edge wireless smart speakers and premium high-fidelity digital soundbar lines.</span>
+                      </p>
                     </div>
                     <div class="flex items-start gap-3 text-sm text-slate-700">
                       <span class="mt-1 flex-shrink-0"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-slate-700"></i></span>
-                      <p class="leading-relaxed font-sans">임베디드 오디오 디지털 신호 처리(DSP) 기술 고도화 및 고해상도 코덱 최적화 상용화</p>
+                      <p class="leading-relaxed font-sans">
+                        <span class="lang-ko">임베디드 오디오 디지털 신호 처리(DSP) 기술 고도화 및 고해상도 코덱 최적화 상용화</span>
+                        <span class="lang-en">Advanced active hardware audio digital filter engineering (DSP) and high-res codec optimizations.</span>
+                      </p>
                     </div>
                     <div class="flex items-start gap-3 text-sm text-slate-700">
                       <span class="mt-1 flex-shrink-0"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-slate-700"></i></span>
-                      <p class="leading-relaxed font-sans">음향 핵심 원천 기술 연구소 조직 경쟁력 강화 및 핵심 특허 포트폴리오 다각화</p>
+                      <p class="leading-relaxed font-sans">
+                        <span class="lang-ko">음향 핵심 원천 기술 연구소 조직 경쟁력 강화 및 핵심 특허 포트폴리오 다각화</span>
+                        <span class="lang-en">Strengthened R&D lab capabilities, aggressively expanding corporate IP and patented acoustic architectures.</span>
+                      </p>
                     </div>
                     <div class="flex items-start gap-3 text-sm text-slate-700">
                       <span class="mt-1 flex-shrink-0"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-slate-700"></i></span>
-                      <p class="leading-relaxed font-sans">글로벌 탑티어 고객사 공동 R&D 프로젝트 다수 성공 및 차세대 오디오 프로덕트 양산화 주도</p>
+                      <p class="leading-relaxed font-sans">
+                        <span class="lang-ko">글로벌 탑티어 고객사 공동 R&D 프로젝트 다수 성공 및 차세대 오디오 프로덕트 양산화 주도</span>
+                        <span class="lang-en">Delivered premium OEM/ODM acoustic systems to top-tier global audio brands, supervising high-yield manufacturing.</span>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -589,7 +701,7 @@
                   <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-slate-200/60 pb-4 mb-4">
                     <div>
                       <div class="flex items-center gap-2 mb-1">
-                        <h4 class="font-sans font-extrabold text-lg md:text-xl text-slate-900">
+                        <h4 class="font-sans font-extrabold text-lg md:text-xl text-slate-900 font-semibold">
                           삼성전자 (Samsung Electronics)
                         </h4>
                         <span class="px-2 py-0.5 rounded text-[10px] bg-blue-50 text-blue-700 border border-blue-100 font-mono tracking-wider font-bold uppercase">
@@ -598,7 +710,8 @@
                       </div>
                       <p class="text-sm font-sans font-semibold text-blue-600 flex items-center gap-1.5">
                         <i data-lucide="award" class="w-4 h-4 text-blue-500"></i>
-                        수석연구원 / 오디오 제품 개발 총괄 & 연구 리더 (SRA / 중앙연구소)
+                        <span class="lang-ko">수석연구원 / 오디오 핵심제품 연구개발 리더</span>
+                        <span class="lang-en">Principal Engineer / Lead Audio R&D & Core Systems Leader</span>
                       </p>
                     </div>
 
@@ -609,28 +722,42 @@
                   </div>
 
                   <p class="text-sm text-slate-600 leading-relaxed font-sans mb-6">
-                    삼성전자 연구개발 본진인 중앙연구소와 실리콘밸리 Samsung Research America(SRA)를 거치며 최고 수준의 차세대 네트워크, AI 기술 및 소비재 기기 신뢰성을 이끌어 냈습니다.
+                    <span class="lang-ko">삼성전자 연구개발 본진인 중앙연구소와 실리콘밸리 Samsung Research America(SRA)를 거치며 최고 수준의 차세대 네트워크, AI 기술 및 소비재 기기 신뢰성을 이끌어 냈습니다.</span>
+                    <span class="lang-en">Spent 26 years across Samsung Electronics Central R&D Headquarters and Samsung Research America (SRA) in Silicon Valley, leading elite labs in consumer acoustics, wireless networks, and AI algorithms.</span>
                   </p>
 
                   <div class="space-y-3.5">
                     <h5 class="font-sans text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
-                      주요 성과 및 연구 분야 (Key Achievements)
+                      <span class="lang-ko">주요 성과 및 연구 분야</span>
+                      <span class="lang-en">Key Achievements & R&D Scope</span>
                     </h5>
                     <div class="flex items-start gap-3 text-sm text-slate-700">
                       <span class="mt-1 flex-shrink-0"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-blue-600"></i></span>
-                      <p class="leading-relaxed font-sans">중앙연구소 및 SRA에서 차세대 통신 네트워크 솔루션 및 가전 내재용 인공지능(AI) 관련 특허 및 상용화 기술 개발 주도</p>
+                      <p class="leading-relaxed font-sans">
+                        <span class="lang-ko">중앙연구소 및 SRA에서 차세대 통신 네트워크 솔루션 및 가전 내재용 인공지능(AI) 관련 특허 및 상용화 기술 개발 주도</span>
+                        <span class="lang-en font-semibold">Spearheaded next-generation wireless communications protocols, embedded home networks, and consumer-bound AI systems.</span>
+                      </p>
                     </div>
                     <div class="flex items-start gap-3 text-sm text-slate-700">
                       <span class="mt-1 flex-shrink-0"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-blue-600"></i></span>
-                      <p class="leading-relaxed font-sans">삼성 크리에이티브 홈 오디오 및 플래그십 무선 스피커, 프리미엄 사운드바 제품 개발 총괄 연구 주도</p>
+                      <p class="leading-relaxed font-sans">
+                        <span class="lang-ko">삼성 크리에이티브 홈 오디오 및 플래그십 무선 스피커, 프리미엄 사운드바 제품 개발 총괄 연구 주도</span>
+                        <span class="lang-en">Managed primary system design for Samsung flagship home-audio products, active speakers, and premium theater soundbars.</span>
+                      </p>
                     </div>
                     <div class="flex items-start gap-3 text-sm text-slate-700">
                       <span class="mt-1 flex-shrink-0"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-blue-600"></i></span>
-                      <p class="leading-relaxed font-sans">삼성전자 본사 차원의 전체 생산 가전 라인업 및 IT 기기의 물리적 신뢰성(Reliability)과 가동 수명 예측/품질 공학 연구 수행</p>
+                      <p class="leading-relaxed font-sans">
+                        <span class="lang-ko">삼성전자 본사 차원의 전체 생산 가전 라인업 및 IT 기기의 물리적 신뢰성(Reliability)과 가동 수명 예측/품질 공학 연구 수행</span>
+                        <span class="lang-en">Directed exhaustive corporate quality campaigns, investigating physical fatigue, durability, and stress tolerances across IT products.</span>
+                      </p>
                     </div>
                     <div class="flex items-start gap-3 text-sm text-slate-700">
                       <span class="mt-1 flex-shrink-0"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-blue-600"></i></span>
-                      <p class="leading-relaxed font-sans">오디오/네트워크 알고리즘 설계 및 대규모 하드웨어-소프트웨어 시스템 결함률 제로화 품질 표준 수립</p>
+                      <p class="leading-relaxed font-sans">
+                        <span class="lang-ko">오디오/네트워크 알고리즘 설계 및 대규모 하드웨어-소프트웨어 시스템 결함률 제로화 품질 표준 수립</span>
+                        <span class="lang-en">Formulated high-reliability standards to achieve zero-defect tolerances in complex large-scale hardware-software deployments.</span>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -659,146 +786,274 @@
               <i data-lucide="graduation-cap" class="w-5 h-5"></i>
             </span>
             <h3 class="font-sans font-extrabold text-lg text-slate-900 border-b border-slate-200 pb-1 flex-1">
-              학력 사항 (Academic Excellence)
+              <span class="lang-ko">학력 사항 (Academic Excellence)</span>
+              <span class="lang-en">Academic Excellence</span>
             </h3>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Academic Degrees: Horizontal Blocks -->
+          <div class="flex flex-col gap-6">
             
-            <!-- PhD Card -->
-            <div id="edu-card-phd" class="group bg-white rounded-2xl border border-slate-200 p-6 shadow-xs hover:shadow-md transition-all-300 relative overflow-hidden flex flex-col justify-between">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50/40 rounded-bl-full pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <span class="p-2.5 rounded-xl bg-slate-50 text-slate-800 border border-slate-200 group-hover:bg-slate-900 group-hover:text-white transition-colors duration-300">
+            <!-- PhD Block (Horizontal Row) -->
+            <div id="edu-card-phd" class="group bg-white rounded-2xl border border-slate-200 p-6 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-300 relative overflow-hidden flex flex-col md:grid md:grid-cols-12 gap-6 pb-6 md:pb-6 font-sans">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50/10 rounded-bl-full pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
+              
+              <!-- Left Col: Dates and Icon (3 cols) -->
+              <div class="md:col-span-3 flex md:flex-col items-start justify-between md:justify-start gap-4 border-b md:border-b-0 md:border-r border-slate-100 pb-4 md:pb-0 md:pr-6 w-full">
+                <div class="flex items-center gap-3">
+                  <span class="p-2.5 rounded-xl bg-slate-50 text-slate-800 border border-slate-200 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300">
                     <i data-lucide="landmark" class="w-5 h-5"></i>
                   </span>
-                  <span class="text-xs font-mono font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">
-                    1991 - 1995
-                  </span>
+                  <div>
+                    <span class="text-xs font-mono font-bold text-slate-500 group-hover:text-blue-600 transition-colors uppercase tracking-wider block">1991 - 1995</span>
+                    <span class="text-[10px] font-mono text-slate-400 font-medium uppercase tracking-widest hidden md:block mt-1">SEOUL, KOREA</span>
+                  </div>
                 </div>
-                <h4 class="font-sans font-extrabold text-lg text-slate-900 mb-0.5 group-hover:text-blue-600 transition-colors duration-200">
-                  공학박사 (Ph.D.)
+                <span class="text-xs font-mono font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 self-center md:self-start">
+                  Ph.D. Program
+                </span>
+              </div>
+              
+              <!-- Center Col: Degree and Department details (4 cols) -->
+              <div class="md:col-span-4 flex flex-col justify-center w-full">
+                <h4 class="font-sans font-extrabold text-lg text-slate-900 mb-1 group-hover:text-blue-600 transition-colors duration-200 pb-0.5">
+                  <span class="lang-ko">공학박사 (Ph.D.)</span>
+                  <span class="lang-en font-semibold">Doctor of Philosophy (Ph.D.)</span>
                 </h4>
                 <p class="text-sm font-sans font-extrabold text-slate-800 mb-1">
-                  서울대학교 대학원 (Graduate School)
+                  <span class="lang-ko">서울대학교 대학원 (Graduate School)</span>
+                  <span class="lang-en">Seoul National University (Graduate School)</span>
                 </p>
-                <p class="text-xs font-sans font-medium text-slate-500 mb-4 flex items-center gap-1.5">
+                <p class="text-xs font-sans font-medium text-slate-500 flex items-center gap-1.5 leading-relaxed">
                   <i data-lucide="book-open" class="w-3.5 h-3.5 text-slate-400"></i>
-                  제어계측공학과 (Control & Instrumentation)
+                  <span>
+                    <span class="lang-ko">제어계측공학과</span>
+                    <span class="lang-en">Dept. of Control & Instrumentation Engineering</span>
+                  </span>
                 </p>
-
-                <div class="border-t border-slate-200/60 pt-4 space-y-2.5">
-                  <div class="flex items-start gap-2 text-xs text-slate-600 leading-relaxed">
+              </div>
+              
+              <!-- Right Col: Bullet points (5 cols) -->
+              <div class="md:col-span-5 flex flex-col justify-center border-t md:border-t-0 border-slate-100 pt-4 md:pt-0 w-full font-sans">
+                <div class="space-y-2.5 font-sans">
+                  <div class="flex items-start gap-2.5 text-xs text-slate-600 leading-relaxed font-sans">
                     <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></span>
-                    <span>신호처리(Signal Processing), 피드백 제어 시스템(Feedback Control System), 최적 제어 및 상태 추정 알고리즘 연구</span>
+                    <span>
+                      <span class="lang-ko">신호처리(DSP), 피드백 제어 시스템 이론, 최적 제어 및 상태 추정 알고리즘</span>
+                      <span class="lang-en text-slate-600">Conducted advanced research in core Digital Signal Processing (DSP), multi-variable feedback control loops, and optimal controllers.</span>
+                    </span>
                   </div>
-                  <div class="flex items-start gap-2 text-xs text-slate-600 leading-relaxed">
+                  <div class="flex items-start gap-2.5 text-xs text-slate-600 leading-relaxed font-sans">
                     <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></span>
-                    <span>오디오 및 디지털 신호 복원, 액티브 노이즈 캔슬레이션(ANC) 제어 기반이 되는 다변수 시스템 제어 논문 완성</span>
+                    <span>
+                      <span class="lang-ko">오디오 및 신호 복원, 액티브 노이즈 캔슬레이션(ANC) 제어 기반 다변수 제어 모델 논문 완성</span>
+                      <span class="lang-en text-slate-600 font-sans">Completed Doctoral thesis on physical signal reconstruction and active noise cancellation (ANC) in multi-variable control loops.</span>
+                    </span>
                   </div>
                 </div>
               </div>
-
-              <div class="mt-6 pt-3 border-t border-slate-200/60 flex justify-between items-center bg-slate-50/50 -mx-6 -mb-6 px-6 py-4 rounded-b-2xl">
-                <span class="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold flex items-center gap-1">
-                  <i data-lucide="map-pin" class="w-3 h-3 text-slate-400"></i> SEOUL, KOREA
+            </div>
+             <!-- MS Block (Horizontal Row) -->
+            <div id="edu-card-ms" class="group bg-white rounded-2xl border border-slate-200 p-6 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-300 relative overflow-hidden flex flex-col md:grid md:grid-cols-12 gap-6 pb-6 md:pb-6 font-sans">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50/10 rounded-bl-full pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
+              
+              <!-- Left Col: Dates and Icon (3 cols) -->
+              <div class="md:col-span-3 flex md:flex-col items-start justify-between md:justify-start gap-4 border-b md:border-b-0 md:border-r border-slate-100 pb-4 md:pb-0 md:pr-6 w-full">
+                <div class="flex items-center gap-3">
+                  <span class="p-2.5 rounded-xl bg-slate-50 text-slate-800 border border-slate-200 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300">
+                    <i data-lucide="landmark" class="w-5 h-5"></i>
+                  </span>
+                  <div>
+                    <span class="text-xs font-mono font-bold text-slate-500 group-hover:text-blue-600 transition-colors uppercase tracking-wider block">1989 - 1991</span>
+                    <span class="text-[10px] font-mono text-slate-400 font-medium uppercase tracking-widest hidden md:block mt-1">SEOUL, KOREA</span>
+                  </div>
+                </div>
+                <span class="text-xs font-mono font-bold text-slate-600 bg-slate-50 px-3 py-1 rounded-full border border-slate-200 self-center md:self-start">
+                  Master's Program
                 </span>
-                <span class="text-[10px] font-mono uppercase tracking-widest text-blue-600 font-bold flex items-center gap-1">
-                  <i data-lucide="award" class="w-3 h-3 text-blue-500"></i> SNU PEDIGREE
-                </span>
+              </div>
+              
+              <!-- Center Col: Degree and Department details (4 cols) -->
+              <div class="md:col-span-4 flex flex-col justify-center w-full">
+                <h4 class="font-sans font-extrabold text-lg text-slate-900 mb-1 group-hover:text-blue-600 transition-colors duration-200 pb-0.5">
+                  <span class="lang-ko">공학석사 (M.S.)</span>
+                  <span class="lang-en font-semibold">Master of Science (M.S.)</span>
+                </h4>
+                <p class="text-sm font-sans font-extrabold text-slate-800 mb-1">
+                  <span class="lang-ko">서울대학교 대학원 (Graduate School)</span>
+                  <span class="lang-en">Seoul National University (Graduate School)</span>
+                </p>
+                <p class="text-xs font-sans font-medium text-slate-500 flex items-center gap-1.5 leading-relaxed">
+                  <i data-lucide="book-open" class="w-3.5 h-3.5 text-slate-400"></i>
+                  <span>
+                    <span class="lang-ko">제어계측공학과</span>
+                    <span class="lang-en">Dept. of Control & Instrumentation Engineering</span>
+                  </span>
+                </p>
+              </div>
+              
+              <!-- Right Col: Bullet points (5 cols) -->
+              <div class="md:col-span-5 flex flex-col justify-center border-t md:border-t-0 border-slate-100 pt-4 md:pt-0 w-full font-sans">
+                <div class="space-y-2.5">
+                  <div class="flex items-start gap-2.5 text-xs text-slate-600 leading-relaxed font-sans">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></span>
+                    <span>
+                      <span class="lang-ko">실시간 디지털 컨트롤러 및 센서 융합 시스템 설계 연구</span>
+                      <span class="lang-en text-slate-600 font-sans">Engineered real-time digital feedback controllers and sensor-fusion integration systems.</span>
+                    </span>
+                  </div>
+                  <div class="flex items-start gap-2.5 text-xs text-slate-600 leading-relaxed font-sans">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></span>
+                    <span>
+                      <span class="lang-ko">마이크로프로세서 기반 적응형 신호 필터링 최적화 연구</span>
+                      <span class="lang-en text-slate-600 font-sans">Researched microprocessor adaptive filtering models and real-time noise attenuation.</span>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- MS Card -->
-            <div id="edu-card-ms" class="group bg-white rounded-2xl border border-slate-200 p-6 shadow-xs hover:shadow-md transition-all-300 relative overflow-hidden flex flex-col justify-between">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50/40 rounded-bl-full pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <span class="p-2.5 rounded-xl bg-slate-50 text-slate-800 border border-slate-200 group-hover:bg-slate-900 group-hover:text-white transition-colors duration-300">
+            <!-- BS Block (Horizontal Row) -->
+            <div id="edu-card-bs" class="group bg-white rounded-2xl border border-slate-200 p-6 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-300 relative overflow-hidden flex flex-col md:grid md:grid-cols-12 gap-6 pb-6 md:pb-6 font-sans">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50/10 rounded-bl-full pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
+              
+              <!-- Left Col: Dates and Icon (3 cols) -->
+              <div class="md:col-span-3 flex md:flex-col items-start justify-between md:justify-start gap-4 border-b md:border-b-0 md:border-r border-slate-100 pb-4 md:pb-0 md:pr-6 w-full">
+                <div class="flex items-center gap-3">
+                  <span class="p-2.5 rounded-xl bg-slate-50 text-slate-800 border border-slate-200 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300">
                     <i data-lucide="landmark" class="w-5 h-5"></i>
                   </span>
-                  <span class="text-xs font-mono font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">
-                    1989 - 1991
-                  </span>
+                  <div>
+                    <span class="text-xs font-mono font-bold text-slate-500 group-hover:text-blue-600 transition-colors uppercase tracking-wider block">1985 - 1989</span>
+                    <span class="text-[10px] font-mono text-slate-400 font-medium uppercase tracking-widest hidden md:block mt-1">SEOUL, KOREA</span>
+                  </div>
                 </div>
-                <h4 class="font-sans font-extrabold text-lg text-slate-900 mb-0.5 group-hover:text-blue-600 transition-colors duration-200">
-                  공학석사 (M.S.)
+                <span class="text-xs font-mono font-bold text-slate-600 bg-slate-50 px-3 py-1 rounded-full border border-slate-200 self-center md:self-start">
+                  Bachelor's Program
+                </span>
+              </div>
+              
+              <!-- Center Col: Degree and Department details (4 cols) -->
+              <div class="md:col-span-4 flex flex-col justify-center w-full">
+                <h4 class="font-sans font-extrabold text-lg text-slate-900 mb-1 group-hover:text-blue-600 transition-colors duration-200 pb-0.5">
+                  <span class="lang-ko">공학학사 (B.S.)</span>
+                  <span class="lang-en font-semibold">Bachelor of Science (B.S.)</span>
                 </h4>
                 <p class="text-sm font-sans font-extrabold text-slate-800 mb-1">
-                  서울대학교 대학원 (Graduate School)
+                  <span class="lang-ko">서울대학교 공과대학</span>
+                  <span class="lang-en">Seoul National University (College of Engineering)</span>
                 </p>
-                <p class="text-xs font-sans font-medium text-slate-500 mb-4 flex items-center gap-1.5">
+                <p class="text-xs font-sans font-medium text-slate-500 flex items-center gap-1.5 leading-relaxed">
                   <i data-lucide="book-open" class="w-3.5 h-3.5 text-slate-400"></i>
-                  제어계측공학과 (Control & Instrumentation)
+                  <span>
+                    <span class="lang-ko">제어계측공학과</span>
+                    <span class="lang-en">Dept. of Control & Instrumentation Engineering</span>
+                  </span>
                 </p>
-
-                <div class="border-t border-slate-200/60 pt-4 space-y-2.5">
-                  <div class="flex items-start gap-2 text-xs text-slate-600 leading-relaxed">
+              </div>
+              
+              <!-- Right Col: Bullet points (5 cols) -->
+              <div class="md:col-span-5 flex flex-col justify-center border-t md:border-t-0 border-slate-100 pt-4 md:pt-0 w-full font-sans">
+                <div class="space-y-2.5">
+                  <div class="flex items-start gap-2.5 text-xs text-slate-600 leading-relaxed font-sans">
                     <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></span>
-                    <span>실시간 디지털 컨트롤러 및 센서 융합 시스템 설계 연구</span>
+                    <span>
+                      <span class="lang-ko">서울대학교 제어계측공학과 우수 졸업</span>
+                      <span class="lang-en text-slate-600 font-sans font-medium">Graduated with academic honours in Control and Instrumentation Engineering.</span>
+                    </span>
                   </div>
-                  <div class="flex items-start gap-2 text-xs text-slate-600 leading-relaxed">
+                  <div class="flex items-start gap-2.5 text-xs text-slate-600 leading-relaxed font-sans">
                     <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></span>
-                    <span>마이크로프로세서 기반 적응형 신호 필터링 최적화 연구</span>
+                    <span>
+                      <span class="lang-ko">기초 전기전자 회로 설계, 자동제어 이론, 임베디드 오토메이션 수료</span>
+                      <span class="lang-en text-slate-600 font-sans">Completed foundational electrical circuit layout, mechanical automation, and classical feedback theory.</span>
+                    </span>
                   </div>
                 </div>
-              </div>
-
-              <div class="mt-6 pt-3 border-t border-slate-200/60 flex justify-between items-center bg-slate-50/50 -mx-6 -mb-6 px-6 py-4 rounded-b-2xl">
-                <span class="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold flex items-center gap-1">
-                  <i data-lucide="map-pin" class="w-3 h-3 text-slate-400"></i> SEOUL, KOREA
-                </span>
-                <span class="text-[10px] font-mono uppercase tracking-widest text-blue-600 font-bold flex items-center gap-1">
-                  <i data-lucide="award" class="w-3 h-3 text-blue-500"></i> SNU PEDIGREE
-                </span>
               </div>
             </div>
 
-            <!-- BS Card -->
-            <div id="edu-card-bs" class="group bg-white rounded-2xl border border-slate-250 p-6 shadow-xs hover:shadow-md transition-all-300 relative overflow-hidden flex flex-col justify-between">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50/40 rounded-bl-full pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
+          <!-- Subsection: Research Achievements & IEEE Publications -->
+          <div class="mt-12 border-t border-slate-100 pt-10">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="p-2 rounded-lg bg-blue-50 text-blue-600 border border-blue-100">
+                <i data-lucide="file-text" class="w-5 h-5"></i>
+              </span>
               <div>
-                <div class="flex items-center justify-between mb-4">
-                  <span class="p-2.5 rounded-xl bg-slate-50 text-slate-800 border border-slate-200 group-hover:bg-slate-900 group-hover:text-white transition-colors duration-300">
-                    <i data-lucide="landmark" class="w-5 h-5"></i>
-                  </span>
-                  <span class="text-xs font-mono font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">
-                    1985 - 1989
-                  </span>
-                </div>
-                <h4 class="font-sans font-extrabold text-lg text-slate-900 mb-0.5 group-hover:text-blue-600 transition-colors duration-200">
-                  공학학사 (B.S.)
+                <h4 class="font-sans font-extrabold text-lg text-slate-950">
+                  <span class="lang-ko">주요 연구 실적 & 학술 논문 (IEEE Publications)</span>
+                  <span class="lang-en font-semibold">Key Research Publications</span>
                 </h4>
-                <p class="text-sm font-sans font-extrabold text-slate-800 mb-1">
-                  서울대학교 공과대학 (College of Engineering)
+                <p class="text-xs text-slate-500 font-sans mt-0.5">
+                  <span class="lang-ko">LinkedIn에 수록된 대표적인 IEEE 학술지 및 국제 학회지 등재 논문</span>
+                  <span class="lang-en">Registered IEEE Journal & Conference publications</span>
                 </p>
-                <p class="text-xs font-sans font-medium text-slate-500 mb-4 flex items-center gap-1.5">
-                  <i data-lucide="book-open" class="w-3.5 h-3.5 text-slate-400"></i>
-                  제어계측공학과 (Control & Instrumentation)
-                </p>
-
-                <div class="border-t border-slate-200/60 pt-4 space-y-2.5">
-                  <div class="flex items-start gap-2 text-xs text-slate-600 leading-relaxed">
-                    <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></span>
-                    <span>서울대학교 제어계측공학과 우수 졸업</span>
-                  </div>
-                  <div class="flex items-start gap-2 text-xs text-slate-600 leading-relaxed">
-                    <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></span>
-                    <span>기초 전기전자 회로 설계, 자동제어 이론, 임베디드 오토메이션 수료</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mt-6 pt-3 border-t border-slate-200/60 flex justify-between items-center bg-slate-50/50 -mx-6 -mb-6 px-6 py-4 rounded-b-2xl">
-                <span class="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold flex items-center gap-1">
-                  <i data-lucide="map-pin" class="w-3 h-3 text-slate-400"></i> SEOUL, KOREA
-                </span>
-                <span class="text-[10px] font-mono uppercase tracking-widest text-blue-600 font-bold flex items-center gap-1">
-                  <i data-lucide="award" class="w-3 h-3 text-blue-500"></i> SNU PEDIGREE
-                </span>
               </div>
             </div>
+
+            <!-- Publications grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
+              
+              <!-- Paper 1 -->
+              <div class="bg-slate-50/50 border border-slate-200/65 rounded-2xl p-6 hover:shadow-md hover:border-blue-200 hover:bg-white transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+                <div class="absolute top-0 right-0 w-20 h-20 bg-blue-600/5 rounded-bl-full pointer-events-none"></div>
+                <div>
+                  <div class="flex justify-between items-start gap-4 mb-4">
+                    <span class="text-[10px] font-mono font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100 uppercase tracking-wider">
+                      IEEE Transactions / Journal
+                    </span>
+                    <span class="text-xs font-mono font-semibold text-slate-400">Oct 1999</span>
+                  </div>
+                  <h5 class="font-sans font-extrabold text-sm text-slate-900 mb-2 group-hover:text-blue-600 leading-snug">
+                    "Recovery of corrupted image data based on the NURBS interpolation"
+                  </h5>
+                  <p class="text-xs font-mono text-slate-500 mb-3 block border-b border-dashed border-slate-150 pb-2">
+                    <span class="font-semibold text-slate-700">Journal:</span> IEEE Transactions on Circuits and Systems for Video Technology
+                  </p>
+                  <p class="text-xs text-slate-650 leading-relaxed font-sans mb-4">
+                    <span class="lang-ko">NURBS(비균일 유절점 스플라인) 기하학적 보간법을 기반으로 비디오 전송 오류 등으로 손상되거나 소실된 핵심 비디오 세부 블록 영역을 고해상도로 정교하게 복원해내는 첨단 컴퓨터 비전 및 디지털 영상 처리 알고리즘 연구.</span>
+                    <span class="lang-en text-slate-600 font-sans">Proposed a high-fidelity image restoration framework utilizing Non-Uniform Rational B-Splines (NURBS) interpolation to mathematically reconstruct corrupted or missing image blocks caused by transmission and stream errors.</span>
+                  </p>
+                </div>
+                <div class="flex justify-between items-center text-[10px] font-mono border-t border-slate-100 pt-3 mt-auto">
+                  <span class="text-slate-400 uppercase tracking-widest">Jong-Wook Park, Senior Member, IEEE</span>
+                  <a href="https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=Recovery%20of%20corrupted%20image%20data%20based%20on%20the%20NURBS%20interpolation" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center gap-1 font-semibold hover:underline">
+                    <span>IEEE Link</span> <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Paper 2 -->
+              <div class="bg-slate-50/50 border border-slate-200/65 rounded-2xl p-6 hover:shadow-md hover:border-blue-200 hover:bg-white transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+                <div class="absolute top-0 right-0 w-20 h-20 bg-blue-600/5 rounded-bl-full pointer-events-none"></div>
+                <div>
+                  <div class="flex justify-between items-start gap-4 mb-4">
+                    <span class="text-[10px] font-mono font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100 uppercase tracking-wider">
+                      IEEE Transactions / Journal
+                    </span>
+                    <span class="text-xs font-mono font-semibold text-slate-400">Dec 1997</span>
+                  </div>
+                  <h5 class="font-sans font-extrabold text-sm text-slate-900 mb-2 group-hover:text-blue-600 leading-snug">
+                    "DCT coefficients recovery-based error concealment technique and its application to the MPEG-2 bit stream error"
+                  </h5>
+                  <p class="text-xs font-mono text-slate-500 mb-3 block border-b border-dashed border-slate-150 pb-2">
+                    <span class="font-semibold text-slate-700">Journal:</span> IEEE Transactions on Circuits and Systems for Video Technology
+                  </p>
+                  <p class="text-xs text-slate-650 leading-relaxed font-sans mb-4">
+                    <span class="lang-ko">MPEG-2 압축 전송 시 비트스트림 에러가 발생한 시점에서 주변 매크로블록의 화소 관계와 분산을 계산하여, 실시간으로 유실된 DCT 이산 코사인 변환 주파수 계수들을 수학적으로 예측 및 은닉/복원하는 비디오 에러 복원 모델 개발 논문.</span>
+                    <span class="lang-en text-slate-600 font-sans">Developed a robust error concealment technique restoring lost Discrete Cosine Transform (DCT) coefficients to mitigate visual artifacts in MPEG-2 video bitstreams caused by network packet loss.</span>
+                  </p>
+                </div>
+                <div class="flex justify-between items-center text-[10px] font-mono border-t border-slate-100 pt-3 mt-auto">
+                  <span class="text-slate-400 uppercase tracking-widest">Jong-Wook Park, Senior Member, IEEE</span>
+                  <a href="https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=DCT%20coefficients%20recovery-based%20error%20concealment%20technique" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center gap-1 font-semibold hover:underline">
+                    <span>IEEE Link</span> <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
 
           </div>
         </div>
@@ -818,15 +1073,18 @@
             </span>
             
             <h3 class="font-sans font-extrabold text-2xl text-white">
-              음향 혁신 솔루션 제휴 및 학술 자문 요청
+              <span class="lang-ko">음향 혁신 솔루션 제휴 및 학술 자문 요청</span>
+              <span class="lang-en font-semibold text-xl">Partnership & Advisory Consulting</span>
             </h3>
             
             <div class="space-y-4 text-sm text-slate-300 font-sans leading-relaxed">
               <p>
-                범진전자의 혁신 오디오 기술이나 저의 삼성전자 중앙연구소·SRA 시절의 다양한 차세대 가전 인공지능 신뢰성 연구 역량을 원천으로 하는 전문 자문이 필요하시다면 오른쪽 양식을 사용하여 상시 연결해 주시기 바랍니다.
+                <span class="lang-ko">범진전자의 혁신 오디오 기술이나 저의 삼성전자 중앙연구소·SRA 시절의 다양한 차세대 가전 인공지능 신뢰성 연구 역량을 원천으로 하는 전문 자문이 필요하시다면 오른쪽 양식을 사용하여 상시 연결해 주시기 바랍니다.</span>
+                <span class="lang-en">If you require professional technical advisory or research partnerships leveraging Bumjin Electronics' core acoustic tech or my years at Samsung HQ Central Labs/SRA in on-device AI and product reliability, please reach out via the interactive form.</span>
               </p>
               <p class="text-xs text-slate-400">
-                작성해 주신 메시지는 박종욱 전용 이메일 계정 <strong class="text-white font-mono">RichardJWPark@gmail.com</strong>으로 직접 가상 전달되어 검토 후 직접 피드백을 회신 드립니다.
+                <span class="lang-ko">작성해 주신 메시지는 박종욱 전용 이메일 계정 <strong class="text-white font-mono">RichardJWPark@gmail.com</strong>으로 직접 가상 전달되어 검토 후 직접 피드백을 회신 드립니다.</span>
+                <span class="lang-en">Your note will be securely routed of record to Dr. Park's personal inbox (<strong class="text-white font-mono">RichardJWPark@gmail.com</strong>) for follow-ups and review.</span>
               </p>
             </div>
           </div>
@@ -836,7 +1094,10 @@
               <i data-lucide="volume-2" class="w-5 h-5"></i>
             </div>
             <div class="font-sans">
-              <p class="text-xs font-semibold text-slate-300">범진전자 오디오 R&D 연구소</p>
+              <p class="text-xs font-semibold text-slate-300">
+                <span class="lang-ko">범진전자 오디오 R&D 연구소</span>
+                <span class="lang-en">Bumjin Electronics Acoustic Lab</span>
+              </p>
               <p class="text-[10px] text-slate-500 font-mono">Building Sound Innovation Globally</p>
             </div>
           </div>
@@ -846,9 +1107,10 @@
         <div class="lg:col-span-7 bg-white rounded-3xl border border-slate-100 p-8 shadow-sm relative overflow-hidden" id="contact-form-container">
           <!-- Actual Form -->
           <div id="contact-form-widget">
-            <h4 class="font-sans font-bold text-lg text-slate-900 mb-6 flex items-center gap-2 font-semibold">
+            <h4 class="font-sans font-bold text-lg text-slate-900 mb-6 flex items-center gap-2 font-semibold font-semibold font-semibold">
               <i data-lucide="code" class="w-5 h-5 text-indigo-500"></i>
-              네트워킹 온라인 질문 메신저
+              <span class="lang-ko">네트워킹 온라인 질문 메신저</span>
+              <span class="lang-en">Online Professional Messenger</span>
             </h4>
 
             <form id="online-message-subform" onsubmit="handleContactFormSubmit(event)" class="space-y-4">
@@ -859,7 +1121,7 @@
                     id="input-form-name"
                     type="text"
                     required
-                    placeholder="홍길동"
+                    placeholder="Your Name / 성함"
                     class="w-full text-xs font-sans p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500/50 focus:border-indigo-500 text-slate-700"
                   >
                 </div>
@@ -868,7 +1130,7 @@
                   <input
                     id="input-form-company"
                     type="text"
-                    placeholder="범진전자 공동 R&D 파트너"
+                    placeholder="Your Company / 회사명"
                     class="w-full text-xs font-sans p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500/50 focus:border-indigo-500 text-slate-700"
                   >
                 </div>
@@ -880,7 +1142,7 @@
                   id="input-form-email"
                   type="email"
                   required
-                  placeholder="partner@company.co.kr"
+                  placeholder="partner@company.com"
                   class="w-full text-xs font-sans p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500/50 focus:border-indigo-500 text-slate-700"
                 >
               </div>
@@ -891,8 +1153,8 @@
                   id="input-form-message"
                   required
                   rows="4"
-                  placeholder="오디오 개발 프로젝트 및 시스템 신뢰성 제어 관련 자문 요청 제안을 기재하세요."
-                  class="w-full text-xs font-sans p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500/50 focus:border-indigo-500 text-slate-750 resize-none"
+                  placeholder="Describe your inquiry or partnership proposal / 자문 및 프로젝트 협력 상세 내용을 기재하세요."
+                  class="w-full text-xs font-sans p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500/50 focus:border-indigo-500 text-slate-705 resize-none"
                 ></textarea>
               </div>
 
@@ -901,7 +1163,9 @@
                 id="form-submit-btn"
                 class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-sans text-xs font-semibold rounded-xl transition-all-300 shadow-sm flex items-center justify-center gap-2 mt-4 cursor-pointer"
               >
-                <i data-lucide="send" class="w-4 h-4"></i> Message 전달하기
+                <i data-lucide="send" class="w-4 h-4"></i>
+                <span class="lang-ko">Message 전달하기</span>
+                <span class="lang-en font-sans text-xs">Send Message</span>
               </button>
             </form>
           </div>
@@ -911,10 +1175,13 @@
             <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mb-4 animate-bounce">
               <i data-lucide="check" class="w-6 h-6"></i>
             </div>
-            <h5 class="font-sans font-bold text-slate-950 text-lg mb-1">메시지 발송을 완료했습니다!</h5>
+            <h5 class="font-sans font-bold text-slate-950 text-lg mb-1">
+              <span class="lang-ko">메시지 발송을 완료했습니다!</span>
+              <span class="lang-en font-semibold">Message Sent Successfully!</span>
+            </h5>
             <p class="text-xs text-slate-600 font-sans max-w-sm leading-relaxed">
-              박종욱 전무/연구소장의 공식 수신함 <br />
-              <strong class="text-slate-800 font-mono">RichardJWPark@gmail.com</strong>으로 가상 접수되었습니다. 감사합니다.
+              <span class="lang-ko">박종욱 전무/연구소장의 공식 수신함 <br /> <strong class="text-slate-800 font-mono">RichardJWPark@gmail.com</strong>으로 가상 접수되었습니다. 감사합니다.</span>
+              <span class="lang-en">Your message has been securely submitted of record to Dr. Park's mailbox <br /> <strong class="text-slate-800 font-mono">RichardJWPark@gmail.com</strong>. Thank you!</span>
             </p>
           </div>
         </div>
@@ -925,10 +1192,12 @@
     <footer class="bg-white border-t border-slate-100 py-12 mt-20 text-slate-500 text-center text-xs font-sans">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
         <p class="font-medium text-slate-700">
-          박종욱 박사 개인 가상 포트폴리오 홀딩스 주식회사
+          <span class="lang-ko">박종욱 박사 개인 가상 포트폴리오 홀딩스 주식회사</span>
+          <span class="lang-en">Dr. Jongwook Park Premium Portfolio Holdings Corp.</span>
         </p>
         <p class="text-slate-400 max-w-lg mx-auto leading-relaxed">
-          본 사이트는 박종욱(Jongwook Park)의 공인 경력(삼성전자, 범진전자) 및 서울대 학위 전공(제어계측공학과)을 기반으로 개발된 프리미엄 개인 디지털 홈페이지입니다.
+          <span class="lang-ko">본 사이트는 박종욱(Jongwook Park)의 공인 경력(삼성전자, 범진전자) 및 서울대 학위 전공(제어계측공학과)을 기반으로 개발된 프리미엄 개인 디지털 홈페이지입니다.</span>
+          <span class="lang-en">This certified digital portfolio represents the official career (Samsung Electronics, Bumjin Electronics) and academic pedigree (Seoul National University, Ph.D. in Control Systems) of Dr. Jongwook Park.</span>
         </p>
         <div class="pt-4 border-t border-slate-50 flex flex-wrap justify-center gap-6 text-slate-400">
           <span>Email: <strong class="text-slate-600 font-mono">RichardJWPark@gmail.com</strong></span>
@@ -942,10 +1211,39 @@
     <script>
       // 1. Initial Icon Setup and Variable Initialization
       document.addEventListener('DOMContentLoaded', () => {
+        initLanguage();
         lucide.createIcons();
         initProfilePhoto();
         initSimulatorCanvas();
       });
+
+      // Language selection handling
+      function getLanguage() {
+        return localStorage.getItem('selected_language') || 'ko';
+      }
+
+      function setLanguage(lang) {
+        document.documentElement.setAttribute('lang', lang);
+        localStorage.setItem('selected_language', lang);
+        
+        const btnKo = document.getElementById('lang-btn-ko');
+        const btnEn = document.getElementById('lang-btn-en');
+        
+        if (lang === 'ko') {
+          btnKo.className = "px-2 py-1 rounded-lg transition-all duration-200 text-slate-700 bg-white shadow-xs cursor-pointer";
+          btnEn.className = "px-2 py-1 rounded-lg transition-all duration-200 text-slate-500 hover:text-slate-800 cursor-pointer";
+        } else {
+          btnKo.className = "px-2 py-1 rounded-lg transition-all duration-200 text-slate-500 hover:text-slate-800 cursor-pointer";
+          btnEn.className = "px-2 py-1 rounded-lg transition-all duration-200 text-slate-700 bg-white shadow-xs cursor-pointer";
+        }
+        
+        updateSimulationCaptions();
+      }
+
+      function initLanguage() {
+        const lang = getLanguage();
+        setLanguage(lang);
+      }
 
       // 2. Smooth Scrolling helper
       function scrollToSection(id) {
@@ -1336,11 +1634,19 @@
         const dspBadge = document.getElementById('dsp-control-wave-badge');
         const waveDot = document.getElementById('status-wave-dot');
         const waveText = document.getElementById('status-wave-text');
+        
+        const isEn = document.documentElement.getAttribute('lang') === 'en';
 
         if (sim_isControlActive) {
           captionIcon.setAttribute('data-lucide', 'shield-check');
           captionIcon.className = "w-4 h-4 mt-0.5 flex-shrink-0 text-blue-600";
-          captionText.innerHTML = `<strong>현재 제어 상태:</strong> 최적 제어기(PID/LQR 피드백)가 가동되어 적색 원본 신호의 외란 및 고조파를 감지하고 역위상 신호(자색 점선)를 실시간 산출해 유해 왜곡을 상쇄하고 깨끗한 <strong>청색 파형</strong>을 안정적으로 복제 중입니다.`;
+          
+          if (isEn) {
+            captionText.innerHTML = `<strong>Feedback Active:</strong> The optimal controller (PID/LQR feedback loop) is active. Sensing raw external disturbances and harmonics in real time, it calculates anti-phase cancellation signals (dashed purple lines) to attenuate harmful distortion, replicating a pristine and stable <strong>blue output waveform</strong>.`;
+          } else {
+            captionText.innerHTML = `<strong>현재 제어 상태:</strong> 최적 제어기(PID/LQR 피드백)가 가동되어 적색 원본 신호의 외란 및 고조파를 감지하고 역위상 신호(자색 점선)를 실시간 산출해 유해 왜곡을 상쇄하고 깨끗한 <strong>청색 파형</strong>을 안정적으로 복제 중입니다.`;
+          }
+          
           outputBadge.className = "px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase flex items-center gap-1 border bg-cyan-950/80 text-cyan-400 border-cyan-800/30";
           dspBadge.style.display = 'flex';
           waveDot.className = "w-1.5 h-1.5 rounded-full bg-cyan-450";
@@ -1348,7 +1654,13 @@
         } else {
           captionIcon.setAttribute('data-lucide', 'shield-alert');
           captionIcon.className = "w-4 h-4 mt-0.5 flex-shrink-0 text-red-500 animate-bounce";
-          captionText.innerHTML = `<strong>경고:</strong> 능동 감쇠 제어기가 우회(Bypass)되었습니다. 외부 오차와 물리 설비 고유 진동의 불일치 현상으로 인해 오디오 다이어프램이 크게 진동하며 적색 유해 왜류 왜곡이 고스란히 출력되고 있습니다.`;
+          
+          if (isEn) {
+            captionText.innerHTML = `<strong>Warning:</strong> Active attenuation controller is currently in Bypass mode. Due to unattenuated resonance loops and physical vibration disparities, the diaphragm experiences severe oscillations, fully outputting the red harmful distortion.`;
+          } else {
+            captionText.innerHTML = `<strong>경고:</strong> 능동 감쇠 제어기가 우회(Bypass)되었습니다. 외부 오차와 물리 설비 고유 진동의 불일치 현상으로 인해 오디오 다이어프램이 크게 진동하며 적색 유해 왜류 왜곡이 고스란히 출력되고 있습니다.`;
+          }
+          
           outputBadge.className = "px-2 py-0.5 rounded text-[10px] font-mono tracking-widest uppercase flex items-center gap-1 border bg-red-950/85 text-red-400 border-red-800/30";
           dspBadge.style.display = 'none';
           waveDot.className = "w-1.5 h-1.5 rounded-full bg-red-500";
