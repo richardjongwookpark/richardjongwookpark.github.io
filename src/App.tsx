@@ -21,7 +21,12 @@ import {
   ChevronDown,
   ArrowUpRight,
   ShieldCheck,
-  Code
+  Code,
+  Camera,
+  Upload,
+  Trash2,
+  Link,
+  Image as ImageIcon
 } from "lucide-react";
 
 import AudioSimulator from "./components/AudioSimulator";
@@ -33,6 +38,65 @@ export default function App() {
   const [contactForm, setContactForm] = useState({ name: "", company: "", email: "", message: "" });
   const [isSent, setIsSent] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+
+  // Profile photo state management
+  const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
+  const [photoUrlInput, setPhotoUrlInput] = useState<string>("");
+  const [showPhotoConfig, setShowPhotoConfig] = useState<boolean>(false);
+
+  // Load custom profile photo from localStorage upon mount
+  useEffect(() => {
+    try {
+      const savedPhoto = localStorage.getItem("jwp_profile_photo");
+      if (savedPhoto) {
+        setProfilePhoto(savedPhoto);
+        if (!savedPhoto.startsWith("data:")) {
+          setPhotoUrlInput(savedPhoto);
+        }
+      }
+    } catch (e) {
+      console.error("Failed to load profile photo:", e);
+    }
+  }, []);
+
+  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setProfilePhoto(base64String);
+        try {
+          localStorage.setItem("jwp_profile_photo", base64String);
+        } catch (err) {
+          alert("파일 크기가 너무 큽니다. 다른 작은 용량 크기의 이미지나 URL 입력을 권장합니다.");
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handlePhotoUrlSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (photoUrlInput.trim()) {
+      setProfilePhoto(photoUrlInput.trim());
+      try {
+        localStorage.setItem("jwp_profile_photo", photoUrlInput.trim());
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
+  const handleResetPhoto = () => {
+    setProfilePhoto(null);
+    setPhotoUrlInput("");
+    try {
+      localStorage.removeItem("jwp_profile_photo");
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   // Auto detect active section on window scroll
   useEffect(() => {
@@ -167,21 +231,131 @@ export default function App() {
             {/* Profile Content */}
             <div className="relative z-20 mt-20">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-                {/* Real professional executive monogram avatar block */}
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-tr from-slate-900 to-indigo-950 flex flex-col justify-center items-center shadow-md border-2 border-slate-100 flex-shrink-0 relative group/avatar" id="profile-photo-avatar">
-                  <Cpu className="w-10 h-10 text-cyan-400 mb-1" />
-                  <span className="text-[9px] font-mono text-cyan-200 uppercase font-black tracking-widest leading-none">SNU Ph.D</span>
+                {/* Flexible avatar block supporting dynamic photo rendering or monogram fallback */}
+                <div 
+                  onClick={() => setShowPhotoConfig(!showPhotoConfig)}
+                  className="w-24 h-24 rounded-2xl overflow-hidden shadow-md border-2 border-slate-100 flex-shrink-0 relative group/avatar bg-slate-100 cursor-pointer" 
+                  id="profile-photo-avatar"
+                  title="사진 설정 변경하기"
+                >
+                  {profilePhoto ? (
+                    <img 
+                      src={profilePhoto}
+                      alt="Dr. Jongwook Park Portrait"
+                      className="w-full h-full object-cover group-hover/avatar:scale-105 transition-transform duration-300"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-tr from-slate-900 to-indigo-950 flex flex-col justify-center items-center">
+                      <Cpu className="w-10 h-10 text-cyan-400 mb-1 animate-pulse" />
+                      <span className="text-[9px] font-mono text-cyan-200 uppercase font-black tracking-widest leading-none">SNU Ph.D</span>
+                    </div>
+                  )}
+                  {/* Hover Camera overlay to hint that it is interactive! */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/avatar:opacity-100 flex flex-col items-center justify-center transition-opacity duration-300">
+                    <Camera className="w-6 h-6 text-white mb-1" />
+                    <span className="text-[9px] text-white font-sans font-semibold">사진 변경</span>
+                  </div>
                 </div>
 
                 <div>
-                  <h1 className="font-sans font-black text-3.5xl text-slate-900 tracking-tight leading-none mb-1">
-                    박종욱 <span className="text-xl text-slate-400 font-medium font-mono">Jongwook Park</span>
-                  </h1>
-                  <p className="font-sans font-medium text-sm text-indigo-600">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h1 className="font-sans font-black text-3.5xl text-slate-900 tracking-tight leading-none mb-1">
+                      박종욱 <span className="text-xl text-slate-400 font-medium font-mono">Jongwook Park</span>
+                    </h1>
+                    {/* Tiny button indicating user can upload photo */}
+                    <button 
+                      onClick={() => setShowPhotoConfig(!showPhotoConfig)}
+                      className={`px-2 py-0.5 rounded-md text-[10px] font-sans font-bold flex items-center gap-1 border transition-colors ${
+                        showPhotoConfig 
+                          ? "bg-indigo-50 text-indigo-700 border-indigo-200" 
+                          : "bg-slate-50 text-slate-500 hover:text-indigo-600 hover:border-indigo-100 cursor-pointer"
+                      }`}
+                    >
+                      <Camera className="w-3 h-3" />
+                      사진 {profilePhoto ? "변경" : "추가"}
+                    </button>
+                  </div>
+                  <p className="font-sans font-medium text-sm text-indigo-600 mt-1">
                     범진전자 전무 겸 연구소장 | 前 삼성전자 오디오 핵심제품 연구개발 리더
                   </p>
                 </div>
               </div>
+
+              {/* Photo Upload & URL Configuration Panel */}
+              {showPhotoConfig && (
+                <div className="mt-4 p-4 bg-slate-50 rounded-2xl border border-slate-200 max-w-lg shadow-xs space-y-4 animate-fadeIn relative z-30" id="photo-config-widget">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-slate-800 font-sans font-bold text-xs">
+                      <ImageIcon className="w-4 h-4 text-indigo-600" />
+                      <span>프로필 사진 커스텀 설정</span>
+                    </div>
+                    <button 
+                      onClick={() => setShowPhotoConfig(false)}
+                      className="text-[11px] text-slate-400 hover:text-slate-600 font-sans cursor-pointer"
+                    >
+                      닫기
+                    </button>
+                  </div>
+
+                  <p className="text-[11px] text-slate-500 leading-relaxed font-sans">
+                    💡 <strong>링크드인 사진 연결 방법:</strong> 내 <a href="https://www.linkedin.com/in/jongwook-park-1188992/" target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline font-bold">LinkedIn 프로필</a>에 접속한 후, 프로필 이미지 위에서 <strong>마우스 우클릭 &gt; '이미지 주소 복사(Copy Image Address)'</strong>를 누르고 아래 입력란에 넣고 적용을 클릭해 주세요. 혹은 소장하고 계신 <strong>사진 파일(PNG, JPG)을 직접 업로드</strong>할 수도 있습니다.
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+                    {/* Method 1: Local File Upload */}
+                    <div className="p-3 bg-white rounded-xl border border-slate-200/50 flex flex-col justify-between">
+                      <span className="text-[10px] font-mono text-slate-400 block font-bold tracking-wider mb-2">METHOD 1: 파일 업로드</span>
+                      <label className="flex items-center justify-center gap-1.5 px-3 py-2 bg-indigo-50 hover:bg-indigo-100/80 text-indigo-700 text-xs font-sans font-bold rounded-lg border border-indigo-100 transition-colors cursor-pointer text-center">
+                        <Upload className="w-3.5 h-3.5" />
+                        사진 파일 선택
+                        <input 
+                          type="file" 
+                          accept="image/*" 
+                          onChange={handlePhotoUpload}
+                          className="hidden" 
+                        />
+                      </label>
+                    </div>
+
+                    {/* Method 2: Image URL Submission */}
+                    <form onSubmit={handlePhotoUrlSubmit} className="p-3 bg-white rounded-xl border border-slate-200/50 flex flex-col justify-between space-y-2">
+                      <span className="text-[10px] font-mono text-slate-400 block font-bold tracking-wider">METHOD 2: 이미지 웹 URL 링크</span>
+                      <div className="flex gap-1.5">
+                        <input
+                          type="url"
+                          placeholder="https://media.licdn.com/..."
+                          value={photoUrlInput}
+                          onChange={(e) => setPhotoUrlInput(e.target.value)}
+                          className="w-full text-[11px] font-sans p-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500 text-slate-700"
+                        />
+                        <button 
+                          type="submit"
+                          className="px-2.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-sans font-bold rounded-lg cursor-pointer flex-shrink-0"
+                        >
+                          적용
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+
+                  {profilePhoto && (
+                    <div className="flex items-center justify-between pt-2 border-t border-slate-200/10">
+                      <span className="text-[10px] font-mono text-emerald-600 font-bold flex items-center gap-1">
+                        <span className="inline-block w-1.5 bg-emerald-500 rounded-full h-1.5 animate-ping" />
+                        현재 이미지 반영 중
+                      </span>
+                      <button 
+                        onClick={handleResetPhoto}
+                        className="text-[10px] text-red-500 hover:text-red-650 font-sans font-semibold flex items-center gap-1 cursor-pointer bg-red-50 px-2 py-1 rounded"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                        지우고 기본 로고로 복원
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Pitch Statement */}
               <div className="mt-8 space-y-4">
