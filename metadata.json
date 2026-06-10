@@ -1,0 +1,6 @@
+{
+  "name": "박종욱 개인 홈페이지",
+  "description": "삼성전자 및 범진전자 오디오 제품/기술 개발 총괄 박종욱의 경력, 연구 성과 및 학위를 요약한 개인 포트폴리오 홈페이지",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
